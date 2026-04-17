@@ -38,7 +38,7 @@
       border: 3px solid var(--uti-yellow); background: #fff; padding: 5px; 
       margin-bottom: 15px; 
     }
-    h1 { color: var(--); font-size: 1.6em; margin-bottom: 8px; }
+    h1 { color: var(--uti-yellow); font-size: 1.6em; margin-bottom: 8px; }
     .tag { color: var(--uti-yellow); font-weight: 600; font-size: 0.95em; margin-bottom: 10px; }
     .subtitle { color: var(--text-light); font-size: 0.9em; max-width: 650px; margin: 0 auto; line-height: 1.6; }
 
@@ -56,7 +56,7 @@
       box-shadow: 0 8px 25px rgba(211,47,47,0.2);
       border: 4px solid var(--uti-red);
       min-width: 200px;
-      cursor: pointer;
+      cursor: default;
       transition: all 0.3s;
     }
     .apologizer-card:hover {
@@ -76,10 +76,6 @@
     .apologizer-role {
       font-size: 0.85em; color: var(--text-light);
       margin-bottom: 8px;
-    }
-    .upload-badge {
-      font-size: 0.75em; color: var(--uti-yellow);
-      font-weight: 600;
     }
 
     .arrow-down {
@@ -118,6 +114,7 @@
       box-shadow: 0 3px 12px rgba(211,47,47,0.08);
       border: 3px solid transparent;
       transition: all 0.3s;
+      cursor: default;
     }
     .student-card:hover {
       border-color: var(--uti-red);
@@ -134,16 +131,7 @@
       line-height: 1.2; min-height: 32px;
       display: flex; align-items: center; justify-content: center;
     }
-    .student-number {
-      font-size: 0.7em; color: #2D2D2D;
-      font-weight: 700; margin-bottom: 4px;
-    }
-    .auto-badge {
-      font-size: 0.65em; color: #4CAF50;
-      font-weight: 600; margin-top: 4px;
-      display: none;
-    }
-    .auto-badge.show { display: block; }
+    /* REMOVED: .student-number styles */
 
     .message-box {
       max-width: 800px; margin: 0 auto 30px;
@@ -193,72 +181,63 @@
     <img src="logo_teknokrat.png" alt="Logo UTI" class="logo" 
          onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 fill=%22%23FFF%22/><circle cx=%2250%22 cy=%2250%22 r=%2240%22 fill=%22%23FFC107%22/><text x=%2250%22 y=%2262%22 font-size=%2230%22 fill=%22%23D32F2F%22 text-anchor=%22middle%22 font-weight=%22bold%22>UTI</text></svg>'">
     <h1>🌸 Permohonan Maaf dari Kami 🌸</h1>
-    <p class="tag">Hidayatullah & Muhammad Bilie Farel Fabian</p>
+    <p class="tag">HIDAYATULLAH & MUHAMMAD BILIE FAREL FABIAN</p>
     <p class="subtitle">
       Kepada rekan rekan hima angkatan 25
     </p>
   </div>
 
   <!-- WHO IS APOLOGIZING -->
-<div class="apologizers">
-  <!-- Hidayatullah Card - Auto Load Only -->
-  <div class="apologizer-card">
-    <img id="imgDayat" class="apologizer-photo" src="" alt="Hidayatullah">
-    <div class="apologizer-name">Hidayatullah</div>
-    <div class="apologizer-role">👑 Mahasiswa Angkatan 25</div>
-    <div class="upload-badge" id="badgeDayat">🔄 Mencari foto...</div>
+  <div class="apologizers">
+    <div class="apologizer-card">
+      <img id="imgDayat" class="apologizer-photo" src="" alt="Hidayatullah">
+      <div class="apologizer-name">HIDAYATULLAH</div>
+      <div class="apologizer-role">👑 Mahasiswa Angkatan 25</div>
+    </div>
+
+    <div class="apologizer-card">
+      <img id="imgBilie" class="apologizer-photo" src="" alt="Muhammad Bilie Farel Fabian">
+      <div class="apologizer-name">MUHAMMAD BILIE FAREL FABIAN</div>
+      <div class="apologizer-role">⚡ Mahasiswa Angkatan 25</div>
+    </div>
   </div>
 
-  <!-- Muhammad Bilie Farel Fabian Card - Auto Load Only -->
-  <div class="apologizer-card">
-    <img id="imgBilie" class="apologizer-photo" src="" alt="Muhammad Bilie Farel Fabian">
-    <div class="apologizer-name">Muhammad Bilie Farel Fabian</div>
-    <div class="apologizer-role">⚡ Mahasiswa Angkatan 25</div>
-    <div class="upload-badge" id="badgeBilie">🔄 Mencari foto...</div>
-  </div>
-</div>
+  <!-- 📜 JAVASCRIPT: Automatic Image Loader -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const targets = [
+        { imgId: 'imgDayat', base: 'foto_hidayat' },
+        { imgId: 'imgBilie', base: 'foto_bilie' }
+      ];
 
-<!-- 📜 JAVASCRIPT: Automatic Image Loader -->
-<script>
-  document.addEventListener('DOMContentLoaded', () => {
-    const targets = [
-      { imgId: 'imgDayat', badgeId: 'badgeDayat', base: 'foto_hidayat' },
-      { imgId: 'imgBilie', badgeId: 'badgeBilie', base: 'foto_bilie' }
-    ];
+      targets.forEach(target => {
+        const img = document.getElementById(target.imgId);
+        const formats = ['jpg', 'png', 'jpeg'];
+        let idx = 0;
 
-    targets.forEach(target => {
-      const img = document.getElementById(target.imgId);
-      const badge = document.getElementById(target.badgeId);
-      const formats = ['jpg', 'png', 'jpeg'];
-      let idx = 0;
+        function tryLoad() {
+          if (idx >= formats.length) {
+            img.src = `data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%23f5f5f5'/><text x='50' y='55' font-size='12' fill='%23999' text-anchor='middle'>No Image</text></svg>`;
+            return;
+          }
 
-      function tryLoad() {
-        if (idx >= formats.length) {
-          badge.textContent = '⚠️ Foto tidak ditemukan';
-          badge.style.color = '#e74c3c';
-          img.src = `data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%23f5f5f5'/><text x='50' y='55' font-size='12' fill='%23999' text-anchor='middle'>No Image</text></svg>`;
-          return;
+          const fileName = `${target.base}.${formats[idx]}`;
+          const testImg = new Image();
+          testImg.onload = () => {
+            img.src = fileName;
+          };
+          testImg.onerror = () => {
+            idx++;
+            tryLoad();
+          };
+          testImg.src = fileName;
         }
 
-        const fileName = `${target.base}.${formats[idx]}`;
-        const testImg = new Image();
-        testImg.onload = () => {
-          img.src = fileName;
-          badge.textContent = `✅ ${fileName}`;
-          badge.style.color = '#4CAF50';
-        };
-        testImg.onerror = () => {
-          idx++;
-          tryLoad();
-        };
-        testImg.src = fileName;
-      }
-
-      tryLoad();
+        tryLoad();
+      });
     });
-  });
-</script>
-  
+  </script>
+
   <div class="arrow-down">⬇️</div>
 
   <!-- TO WHOM -->
@@ -277,7 +256,7 @@
       <strong>Assalamu'alaikum Wr. Wb. / Salam sejahtera untuk kita semua,</strong>
     </p>
     <p>
-      Kami <span class="highlight">Hidayatullah</span> dan <span class="highlight">Muhammad Bilie Farel Fabian</span> 
+      Kami <span class="highlight">HIDAYATULLAH</span> dan <span class="highlight">MUHAMMAD BILIE FAREL FABIAN</span> 
       dengan segala kerendahan hati memohon maaf yang sebesar-besarnya kepada 35 teman-teman tercinta 
       <span class="highlight">Hima angkatan 25</span> atas ketidakhadiran kami 
       dalam acara kaderisasi.
@@ -304,59 +283,59 @@
     </p>
     <p style="text-align: right; margin-top: 20px;">
       Hormat kami,<br>
-      <strong>Hidayatullah & Muhammad Bilie Farel Fabian</strong>
+      <strong>HIDAYATULLAH & MUHAMMAD BILIE FAREL FABIAN</strong>
     </p>
   </div>
 
   <div class="footer">
-    <p>💡 Foto otomatis dimuat dari file • Klik foto untuk ganti manual • Total: 35 Mahasiswa</p>
+    <p>💡 Foto otomatis dimuat dari file • Total: 35 Mahasiswa</p>
   </div>
 
   <button class="audio-wrap" id="audioBtn" onclick="toggleAudio()">
     🎵 Putar Mars Teknokrat
   </button>
 
-  <audio id="bgAudio" preload="auto">
+  <audio id="bgAudio" preload="auto" loop>
     <source src="mars_teknokrat.mp3" type="audio/mpeg">
   </audio>
 
   <script>
     // DATA 35 MAHASISWA ANGKATAN 25
     const students = [
-      { id: 1, name: "Ridan Nurroziqin mardani" },
-      { id: 2, name: "Muttaqi zakawan afif" },
-      { id: 3, name: "reihan adi permana" },
-      { id: 4, name: "Muhammad kelvin ariansyah" },
-      { id: 5, name: "David ostama" },
-      { id: 6, name: "Dera Dermawan" },
-      { id: 7, name: "Wahyu al ghafari" },
-      { id: 8, name: "Bella karunia renata" },
-      { id: 9, name: "Tegas aji wibowo" },
-      { id: 10, name: "Dinda Kanti Rahayu" },
-      { id: 11, name: "Datyah Refa Zahara" },
-      { id: 12, name: "Delvia Ramadhani" },
-      { id: 13, name: "M.Zidan Rizky.r" },
-      { id: 14, name: "Nirmala Nur faddilah" },
-      { id: 15, name: "Pandawa Ghandi" },
-      { id: 16, name: "Aura Syafiya Thfaal" },
-      { id: 17, name: "I made dwi anggara" },
-      { id: 18, name: "Gayuh utami" },
-      { id: 19, name: "Ahmad Hafiz Fazli" },
-      { id: 21, name: "Ikhsan yulianda fatiriski" },
-      { id: 22, name: "Risma destisari" },
-      { id: 23, name: "Iven dwi cahyani" },
-      { id: 24, name: "Farel ridholi vios" },
-      { id: 25, name: "Ririn Nopita sari" },
-      { id: 26, name: "Farhan alamsyah nuryadi" },
-      { id: 27, name: "M. Syaifi al hakimi" },
-      { id: 28, name: "Resiana pahleppi" },
-      { id: 29, name: "Aidil azizah" },
-      { id: 30, name: "Tegar pratama" },
-      { id: 31, name: "Zahra ayu azzhari" },
-      { id: 32, name: "Dini Khaira" },
-      { id: 33, name: "Azzahra nur ihsani" },
-      { id: 34, name: "Abdul rohman" },
-      { id: 35, name: "elvina yulia sari" },
+{ id: 1, name: "RIDAN NURROZIQIN MARDANI" },
+      { id: 2, name: "MUTTAQI ZAKAWAN AFIF" },
+      { id: 3, name: "REIHAN ADI PERMANA" },
+      { id: 4, name: "MUHAMMAD KELVIN ARIANSYAH" },
+      { id: 5, name: "DAVID OSTAMA" },
+      { id: 6, name: "DERA DERMAWAN" },
+      { id: 7, name: "WAHYU AL GHAFARI" },
+      { id: 8, name: "BELLA KARUNIA RENATA" },
+      { id: 9, name: "TEGAS AJI WIBOWO" },
+      { id: 10, name: "DINDA KANTI RAHAYU" },
+      { id: 11, name: "DATYAH REFA ZAHARA" },
+      { id: 12, name: "DELVIA RAMADHANI" },
+      { id: 13, name: "M.ZIDAN RIZKY.R" },
+      { id: 14, name: "NIRMALA NUR FADDILAH" },
+      { id: 15, name: "PANDAWA GHANDI" },
+      { id: 16, name: "AURA SYAFIYA THFAAL" },
+      { id: 17, name: "I MADE DWI ANGGARA" },
+      { id: 18, name: "GAYUH UTAMI" },
+      { id: 19, name: "AHMAD HAFIZ FAZLI" },
+      { id: 21, name: "IKHSAN YULIANDA FATIRISKI" },
+      { id: 22, name: "RISMA DESTISARI" },
+      { id: 23, name: "IVEN DWI CAHYANI" },
+      { id: 24, name: "FAREL RIDHOLI VIOS" },
+      { id: 25, name: "RIRIN NOPITA SARI" },
+      { id: 26, name: "FARHAN ALAMSYAH NURYADI" },
+      { id: 27, name: "M. SYAIFI AL HAKIMI" },
+      { id: 28, name: "RESIANA PAHLEPPI" },
+      { id: 29, name: "AIDIL AZIZAH" },
+      { id: 30, name: "TEGAR PRATAMA" },
+      { id: 31, name: "ZAHRA AYU AZZHARI" },
+      { id: 32, name: "DINI KHAIRA" },
+      { id: 33, name: "AZZAHRA NUR IHSANI" },
+      { id: 34, name: "ABDUL ROHMAN" },
+      { id: 35, name: "ELVINA YULIA SARI" },
     ];
 
     // Generate placeholder SVG
@@ -368,7 +347,6 @@
     }
 
     // Slugify name for filename
-
     function slugify(text) {
       return text.toLowerCase()
         .trim()
@@ -403,7 +381,7 @@
           if (!loaded) {
             loaded = true;
             imgElement.src = filename;
-            if (onSuccess) onSuccess(filename);
+            if (onSuccess) onSuccess();
           }
         };
         testImg.onerror = tryNext;
@@ -412,25 +390,20 @@
       tryNext();
     }
 
-    // Generate Grid
+    // Generate Grid - REMOVED student-number
     function generateGrid() {
       const grid = document.getElementById('studentGrid');
       students.forEach(student => {
         const card = document.createElement('div');
         card.className = 'student-card';
         card.id = `card${student.id}`;
-        card.onclick = () => document.getElementById(`input${student.id}`).click();
         
         const placeholder = getPlaceholder(student.name, student.id);
         
         card.innerHTML = `
-          <div class="student-number">#${String(student.id).padStart(2, '0')}</div>
           <img id="img${student.id}" class="student-photo" src="${placeholder}" alt="${student.name}" 
                data-student-id="${student.id}">
           <div class="student-name">${student.name}</div>
-          <div class="auto-badge" id="autoBadge${student.id}">🔄 Mencari foto...</div>
-          <input type="file" id="input${student.id}" accept="image/*" hidden 
-                 onchange="handleStudentPhoto(this, ${student.id})">
         `;
         grid.appendChild(card);
       });
@@ -440,89 +413,25 @@
     function autoLoadPhotos() {
       students.forEach(student => {
         const img = document.getElementById(`img${student.id}`);
-        const badge = document.getElementById(`autoBadge${student.id}`);
         
         tryLoadImage(
           img,
           student,
-          (filename) => {
-            // Success: photo found
-            badge.textContent = `✅ ${filename}`;
-            badge.classList.add('show');
-            badge.style.color = '#4CAF50';
-            localStorage.setItem(`angkatan25_foto_${student.id}`, img.src);
-          },
+          () => { /* Success - no badge */ },
           () => {
-            // Failed: use placeholder
             img.src = getPlaceholder(student.name, student.id);
-            badge.textContent = '📷 Klik untuk upload';
-            badge.classList.add('show');
-            badge.style.color = '#FF9800';
           }
         );
       });
     }
 
-    // Handle Apologizer Photo Upload
-    function handleApologizerPhoto(input, person) {
-      if (input.files && input.files[0]) {
-        const reader = new FileReader();
-        reader.onload = function(e) {
-          const img = document.getElementById(`img${person}`);
-          const badge = document.getElementById(`badge${person}`);
-          img.src = e.target.result;
-          localStorage.setItem(`apologizer_${person}`, e.target.result);
-          badge.textContent = '✅ Tersimpan';
-          badge.style.color = '#4CAF50';
-          setTimeout(() => {
-            badge.textContent = '📷 Ganti foto';
-            badge.style.color = '';
-          }, 2000);
-        };
-        reader.readAsDataURL(input.files[0]);
-      }
-    }
-
-    // Handle Student Photo Upload (manual override)
-    function handleStudentPhoto(input, id) {
-      if (input.files && input.files[0]) {
-        const reader = new FileReader();
-        reader.onload = function(e) {
-          const img = document.getElementById(`img${id}`);
-          const badge = document.getElementById(`autoBadge${id}`);
-          img.src = e.target.result;
-          localStorage.setItem(`angkatan25_foto_${id}`, e.target.result);
-          badge.textContent = '✅ Manual upload';
-          badge.style.color = '#4CAF50';
-          const card = document.getElementById(`card${id}`);
-          card.style.borderColor = '#4CAF50';
-        };
-        reader.readAsDataURL(input.files[0]);
-      }
-    }
-
-    // Load previously saved photos from localStorage
+    // Load cached photos from localStorage
     function loadSavedPhotos() {
-      // Apologizers
-      ['Dayat', 'Bilie'].forEach(person => {
-        const saved = localStorage.getItem(`apologizer_${person}`);
-        if (saved) {
-          document.getElementById(`img${person}`).src = saved;
-          const badge = document.getElementById(`badge${person}`);
-          badge.textContent = '✅ Tersimpan';
-          badge.style.color = '#4CAF50';
-        }
-      });
-      // Students
       students.forEach(student => {
         const saved = localStorage.getItem(`angkatan25_foto_${student.id}`);
         if (saved) {
           const img = document.getElementById(`img${student.id}`);
-          const badge = document.getElementById(`autoBadge${student.id}`);
           img.src = saved;
-          badge.textContent = '✅ Dari penyimpanan';
-          badge.classList.add('show');
-          badge.style.color = '#4CAF50';
         }
       });
     }
@@ -543,10 +452,22 @@
       }
     }
 
-    // Audio Control
+    // Audio Control with Auto-play
     const audio = document.getElementById('bgAudio');
     const audioBtn = document.getElementById('audioBtn');
     let isPlaying = false;
+
+    // Try to auto-play music on page load
+    function tryAutoPlay() {
+      audio.play().then(() => {
+        audioBtn.classList.add('playing');
+        audioBtn.innerHTML = '⏸ Hentikan Musik';
+        isPlaying = true;
+      }).catch(err => {
+        // Auto-play blocked by browser, show button for manual play
+        console.log('Auto-play blocked, waiting for user interaction');
+      });
+    }
 
     function toggleAudio() {
       if (isPlaying) {
@@ -565,12 +486,20 @@
       }
     }
 
+    // Enable auto-play after first user interaction (workaround for browser policies)
+    document.addEventListener('click', function firstInteraction() {
+      tryAutoPlay();
+      document.removeEventListener('click', firstInteraction);
+    }, { once: true });
+
     // Initialize
     window.onload = function() {
       generateGrid();
       loadSavedPhotos();
-      autoLoadPhotos(); // Auto-load from files
+      autoLoadPhotos();
       initSakura();
+      // Try auto-play after a short delay
+      setTimeout(tryAutoPlay, 1000);
     };
   </script>
 </body>
