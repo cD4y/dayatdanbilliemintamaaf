@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Maaf dari Dayat & Bilie ke Angkatan 25 🌸</title>
+  <style>
+    :root {
+      --uti-red: #ffd700;
+      --uti-yellow: #ff0707;
+      --bg: linear-gradient(135deg, #800000 0%, #800000 100%);
+      --card: rgba(255,255,255,0.92);
+      --text: #2D2D2D;
+      --text-light: #666;
+      --shadow: 0 10px 30px rgba(211, 47, 47, 0.15);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Segoe UI', 'Noto Sans JP', system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      padding: 20px;
+      position: relative;
+    }
+    .sakura-box { position: fixed; top:0; left:0; width:100%; height:100%; pointer-events:none; z-index:0; overflow:hidden; }
+    .petal { position: absolute; top: -5%; font-size: 18px; opacity: 0.7; animation: fall linear infinite; }
+    @keyframes fall { to { transform: translateY(110vh) rotate(720deg); } }
+
+    .header-section { 
+      max-width: 900px; margin: 0 auto 30px; text-align: center;
+      background: var(--card); padding: 35px 25px; border-radius: 20px;
+      box-shadow: var(--shadow); border-top: 5px solid var(--uti-red);
+      position: relative; z-index: 10;
+    }
+    .logo { 
+      width: 70px; height: 70px; object-fit: contain; border-radius: 50%; 
+      border: 3px solid var(--uti-yellow); background: #fff; padding: 5px; 
+      margin-bottom: 15px; 
+    }
+    h1 { color: var(--); font-size: 1.6em; margin-bottom: 8px; }
+    .tag { color: var(--uti-yellow); font-weight: 600; font-size: 0.95em; margin-bottom: 10px; }
+    .subtitle { color: var(--text-light); font-size: 0.9em; max-width: 650px; margin: 0 auto; line-height: 1.6; }
+
+    .apologizers {
+      max-width: 700px; margin: 0 auto 35px;
+      display: flex; justify-content: center; gap: 40px;
+      position: relative; z-index: 10;
+      flex-wrap: wrap;
+    }
+    .apologizer-card {
+      background: var(--card);
+      border-radius: 20px;
+      padding: 25px 20px;
+      text-align: center;
+      box-shadow: 0 8px 25px rgba(211,47,47,0.2);
+      border: 4px solid var(--uti-red);
+      min-width: 200px;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+    .apologizer-card:hover {
+      transform: translateY(-8px) scale(1.03);
+      box-shadow: 0 12px 35px rgba(211,47,47,0.3);
+    }
+    .apologizer-photo {
+      width: 120px; height: 120px; border-radius: 50%;
+      object-fit: cover; border: 4px solid #ff0707;
+      background: #f5f5f5; margin: 0 auto 12px;
+      display: block;
+    }
+    .apologizer-name {
+      font-size: 1.1em; font-weight: 700; color: var(--uti-yellow);
+      margin-bottom: 5px;
+    }
+    .apologizer-role {
+      font-size: 0.85em; color: var(--text-light);
+      margin-bottom: 8px;
+    }
+    .upload-badge {
+      font-size: 0.75em; color: var(--uti-yellow);
+      font-weight: 600;
+    }
+
+    .arrow-down {
+      width: 100%; text-align: center;
+      font-size: 2.5em; color: var(--uti-yellow);
+      margin: 20px 0;
+      animation: bounce 2s infinite;
+    }
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+
+    .recipients-title {
+      text-align: center;
+      max-width: 800px; margin: 0 auto 25px;
+      background: var(--card); padding: 20px;
+      border-radius: 16px; box-shadow: var(--shadow);
+      position: relative; z-index: 10;
+    }
+    .recipients-title h2 { color: var(--uti-yellow); font-size: 1.4em; margin-bottom: 8px; }
+    .recipients-title p { color: var(--text-light); font-size: 0.9em; }
+
+    .grid-container {
+      max-width: 1200px; margin: 0 auto 30px;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+      gap: 18px;
+      position: relative; z-index: 10;
+    }
+    .student-card {
+      background: var(--card);
+      border-radius: 14px;
+      padding: 12px 10px;
+      text-align: center;
+      box-shadow: 0 3px 12px rgba(211,47,47,0.08);
+      border: 3px solid transparent;
+      transition: all 0.3s;
+    }
+    .student-card:hover {
+      border-color: var(--uti-red);
+      transform: translateY(-10px);
+    }
+    .student-photo {
+      width: 70px; height: 70px; border-radius: 50%;
+      object-fit: cover; border: 2px solid var(--uti-yellow);
+      background: #f5f5f5; margin: 0 auto 8px;
+      display: block;
+    }
+    .student-name {
+      font-size: 0.8em; font-weight: 600; color: var(--text);
+      line-height: 1.2; min-height: 32px;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .student-number {
+      font-size: 0.7em; color: #2D2D2D;
+      font-weight: 700; margin-bottom: 4px;
+    }
+    .auto-badge {
+      font-size: 0.65em; color: #4CAF50;
+      font-weight: 600; margin-top: 4px;
+      display: none;
+    }
+    .auto-badge.show { display: block; }
+
+    .message-box {
+      max-width: 800px; margin: 0 auto 30px;
+      background: linear-gradient(135deg, #ffe7e7 0%, #fff9f9 100%);
+      padding: 30px 25px; border-radius: 20px;
+      box-shadow: var(--shadow);
+      border-left: 6px solid var(--uti-red);
+      position: relative; z-index: 10;
+    }
+    .message-box h2 { color: var(--uti-yellow); margin-bottom: 15px; font-size: 1.3em; }
+    .message-box p { line-height: 1.8; margin-bottom: 12px; color: var(--text); font-size: 0.95em; }
+    .highlight { color: var(--uti-yellow); font-weight: 600; }
+
+    .audio-wrap { 
+      position: fixed; bottom: 25px; right: 25px; z-index: 100;
+      background: var(--uti-yellow); color: #ffffff;
+      border: none; padding: 12px 20px; border-radius: 30px;
+      cursor: pointer; font-weight: 600; display: flex;
+      align-items: center; gap: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+      transition: all 0.3s;
+    }
+    .audio-wrap:hover { transform: scale(1.05); }
+    .audio-wrap.playing { background: var(--uti-red); color: rgb(0, 0, 0); }
+
+    .footer {
+      text-align: center; padding: 25px;
+      color: var(--text-light); font-size: 0.85em;
+      position: relative; z-index: 10;
+    }
+
+    @media(max-width: 768px) {
+      .apologizers { gap: 20px; }
+      .apologizer-card { min-width: 150px; padding: 20px 15px; }
+      .apologizer-photo { width: 100px; height: 100px; }
+      .grid-container { grid-template-columns: repeat(auto-fill, minmax(110px, 1fr)); gap: 12px; }
+      .student-photo { width: 60px; height: 60px; }
+      .student-name { font-size: 0.7em; min-height: 28px; }
+      h1 { font-size: 1.3em; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="sakura-box" id="sakura"></div>
+
+  <div class="header-section">
+    <img src="logo_teknokrat.png" alt="Logo UTI" class="logo" 
+         onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 fill=%22%23FFF%22/><circle cx=%2250%22 cy=%2250%22 r=%2240%22 fill=%22%23FFC107%22/><text x=%2250%22 y=%2262%22 font-size=%2230%22 fill=%22%23D32F2F%22 text-anchor=%22middle%22 font-weight=%22bold%22>UTI</text></svg>'">
+    <h1>🌸 Permohonan Maaf dari Kami 🌸</h1>
+    <p class="tag">Hidayatullah & Muhammad Bilie Farel Fabian</p>
+    <p class="subtitle">
+      Kepada rekan rekan hima angkatan 25
+    </p>
+  </div>
+
+  <!-- WHO IS APOLOGIZING -->
+  <div class="apologizers">
+    <div class="apologizer-card" onclick="document.getElementById('inputDayat').click()">
+      <img id="imgDayat" class="apologizer-photo" src="" alt="Hidayatullah">
+      <div class="apologizer-name">Hidayatullah</div>
+      <div class="apologizer-role">👑 Mahasiswa Angkatan 25</div>
+      <div class="upload-badge" id="badgeDayat">🔄 Loading...</div>
+      <input type="file" id="inputDayat" accept="image/*" hidden onchange="handleApologizerPhoto(this, 'Dayat')">
+    </div>
+
+    <div class="apologizer-card" onclick="document.getElementById('inputBilie').click()">
+      <img id="imgBilie" class="apologizer-photo" src="" alt="Muhammad Bilie Farel Fabian">
+      <div class="apologizer-name">Muhammad Bilie Farel Fabian</div>
+      <div class="apologizer-role">⚡ Mahasiswa Angkatan 25</div>
+      <div class="upload-badge" id="badgeBilie">🔄 Loading...</div>
+      <input type="file" id="inputBilie" accept="image/*" hidden onchange="handleApologizerPhoto(this, 'Bilie')">
+    </div>
+  </div>
+
+  <div class="arrow-down">⬇️</div>
+
+  <!-- TO WHOM -->
+  <div class="recipients-title">
+    <h2>Kepada teman teman hima angkatan 25</h2>
+    <p>Kami dengan rendah hati memohon maaf atas ketidakhadiran kami</p>
+  </div>
+
+  <div class="grid-container" id="studentGrid">
+    <!-- Generated by JavaScript -->
+  </div>
+
+  <div class="message-box">
+    <h2>💌 Pesan Untuk Teman-Teman</h2>
+    <p>
+      <strong>Assalamu'alaikum Wr. Wb. / Salam sejahtera untuk kita semua,</strong>
+    </p>
+    <p>
+      Kami <span class="highlight">Hidayatullah</span> dan <span class="highlight">Muhammad Bilie Farel Fabian</span> 
+      dengan segala kerendahan hati memohon maaf yang sebesar-besarnya kepada 35 teman-teman tercinta 
+      <span class="highlight">Hima angkatan 25</span> atas ketidakhadiran kami 
+      dalam acara kaderisasi.
+    </p>
+    <p>
+      Kami sangat menyesal tidak bisa hadir dan berbagi momen berharga bersama kalian. Kami tahu acara ini 
+      penting untuk membangun kekompakan dan solidaritas kita sebagai satu angkatan.
+    </p>
+    <p>
+      Kami berjanji akan:
+    </p>
+    <p style="padding-left: 20px;">
+      ✅ Mengejar semua materi yang tertinggal<br>
+      ✅ Hadir penuh di kegiatan berikutnya<br>
+      ✅ Tetap aktif berkontribusi untuk angkatan kita<br>
+      ✅ Menjaga nama baik Angkatan 25 UTI
+    </p>
+    <p>
+      Mohon pengertian dan restunya dari teman-teman semua. Kami sangat menghargai persahabatan ini 
+      dan berharap bisa segera bertemu dan belajar bersama lagi.
+    </p>
+    <p style="text-align: center; margin-top: 20px; font-size: 1.1em;">
+      <strong>Hima informatika JAYA JAYA JAYA 🔥🌸</strong>
+    </p>
+    <p style="text-align: right; margin-top: 20px;">
+      Hormat kami,<br>
+      <strong>Hidayatullah & Muhammad Bilie Farel Fabian</strong>
+    </p>
+  </div>
+
+  <div class="footer">
+    <p>💡 Foto otomatis dimuat dari file • Klik foto untuk ganti manual • Total: 35 Mahasiswa</p>
+  </div>
+
+  <button class="audio-wrap" id="audioBtn" onclick="toggleAudio()">
+    🎵 Putar Mars Teknokrat
+  </button>
+
+  <audio id="bgAudio" preload="auto">
+    <source src="mars_teknokrat.mp3" type="audio/mpeg">
+  </audio>
+
+  <script>
+    // DATA 35 MAHASISWA ANGKATAN 25
+    const students = [
+      { id: 1, name: "Ridan Nurroziqin mardani" },
+      { id: 2, name: "Muttaqi zakawan afif" },
+      { id: 3, name: "reihan adi permana" },
+      { id: 4, name: "Muhammad kelvin ariansyah" },
+      { id: 5, name: "David ostama" },
+      { id: 6, name: "Dera Dermawan" },
+      { id: 7, name: "Wahyu al ghafari" },
+      { id: 8, name: "Bella karunia renata" },
+      { id: 9, name: "Tegas aji wibowo" },
+      { id: 10, name: "Dinda Kanti Rahayu" },
+      { id: 11, name: "Datyah Refa Zahara" },
+      { id: 12, name: "Delvia Ramadhani" },
+      { id: 13, name: "M.Zidan Rizky.r" },
+      { id: 14, name: "Nirmala Nur faddilah" },
+      { id: 15, name: "Pandawa Ghandi" },
+      { id: 16, name: "Aura Syafiya Thfaal" },
+      { id: 17, name: "I made dwi anggara" },
+      { id: 18, name: "Gayuh utami" },
+      { id: 19, name: "Ahmad Hafiz Fazli" },
+      { id: 21, name: "Ikhsan yulianda fatiriski" },
+      { id: 22, name: "Risma destisari" },
+      { id: 23, name: "Iven dwi cahyani" },
+      { id: 24, name: "Farel ridholi vios" },
+      { id: 25, name: "Ririn Nopita sari" },
+      { id: 26, name: "Farhan alamsyah nuryadi" },
+      { id: 27, name: "M. Syaifi al hakimi" },
+      { id: 28, name: "Resiana pahleppi" },
+      { id: 29, name: "Aidil azizah" },
+      { id: 30, name: "Tegar pratama" },
+      { id: 31, name: "Zahra ayu azzhari" },
+      { id: 32, name: "Dini Khaira" },
+      { id: 33, name: "Azzahra nur ihsani" },
+      { id: 34, name: "Abdul rohman" },
+      { id: 35, name: "elvina yulia sari" },
+    ];
+
+    // Generate placeholder SVG
+    function getPlaceholder(name, id) {
+      const initial = name.trim().charAt(0).toUpperCase();
+      const colors = ['#D32F2F', '#FFC107', '#1976D2', '#358E3C', '#7B1FA2'];
+      const color = colors[id % colors.length];
+      return `data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%23F5F5F5'/><circle cx='50' cy='50' r='35' fill='${color}'/><text x='50' y='65' font-size='40' fill='white' text-anchor='middle' font-weight='bold'>${initial}</text></svg>`;
+    }
+
+    // Slugify name for filename
+
+    function slugify(text) {
+      return text.toLowerCase()
+        .trim()
+        .replace(/[^\w\s-]/g, '')
+        .replace(/[\s_-]+/g, '_')
+        .replace(/^-+|-+$/g, '');
+    }
+
+    // Try to load image with multiple filename patterns
+    function tryLoadImage(imgElement, student, onSuccess, onFail) {
+      const patterns = [
+        `foto_${student.id}.jpg`,
+        `foto_${student.id}.png`,
+        `foto_${student.id}.jpeg`,
+        `${slugify(student.name)}.jpg`,
+        `${slugify(student.name)}.png`,
+        `${student.name.trim()}.jpg`,
+        `${student.name.trim()}.png`
+      ];
+
+      let loaded = false;
+      let tried = 0;
+
+      function tryNext() {
+        if (tried >= patterns.length) {
+          if (!loaded && onFail) onFail();
+          return;
+        }
+        const filename = patterns[tried++];
+        const testImg = new Image();
+        testImg.onload = () => {
+          if (!loaded) {
+            loaded = true;
+            imgElement.src = filename;
+            if (onSuccess) onSuccess(filename);
+          }
+        };
+        testImg.onerror = tryNext;
+        testImg.src = filename;
+      }
+      tryNext();
+    }
+
+    // Generate Grid
+    function generateGrid() {
+      const grid = document.getElementById('studentGrid');
+      students.forEach(student => {
+        const card = document.createElement('div');
+        card.className = 'student-card';
+        card.id = `card${student.id}`;
+        card.onclick = () => document.getElementById(`input${student.id}`).click();
+        
+        const placeholder = getPlaceholder(student.name, student.id);
+        
+        card.innerHTML = `
+          <div class="student-number">#${String(student.id).padStart(2, '0')}</div>
+          <img id="img${student.id}" class="student-photo" src="${placeholder}" alt="${student.name}" 
+               data-student-id="${student.id}">
+          <div class="student-name">${student.name}</div>
+          <div class="auto-badge" id="autoBadge${student.id}">🔄 Mencari foto...</div>
+          <input type="file" id="input${student.id}" accept="image/*" hidden 
+                 onchange="handleStudentPhoto(this, ${student.id})">
+        `;
+        grid.appendChild(card);
+      });
+    }
+
+    // Auto-load photos on page load
+    function autoLoadPhotos() {
+      students.forEach(student => {
+        const img = document.getElementById(`img${student.id}`);
+        const badge = document.getElementById(`autoBadge${student.id}`);
+        
+        tryLoadImage(
+          img,
+          student,
+          (filename) => {
+            // Success: photo found
+            badge.textContent = `✅ ${filename}`;
+            badge.classList.add('show');
+            badge.style.color = '#4CAF50';
+            localStorage.setItem(`angkatan25_foto_${student.id}`, img.src);
+          },
+          () => {
+            // Failed: use placeholder
+            img.src = getPlaceholder(student.name, student.id);
+            badge.textContent = '📷 Klik untuk upload';
+            badge.classList.add('show');
+            badge.style.color = '#FF9800';
+          }
+        );
+      });
+    }
+
+    // Handle Apologizer Photo Upload
+    function handleApologizerPhoto(input, person) {
+      if (input.files && input.files[0]) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+          const img = document.getElementById(`img${person}`);
+          const badge = document.getElementById(`badge${person}`);
+          img.src = e.target.result;
+          localStorage.setItem(`apologizer_${person}`, e.target.result);
+          badge.textContent = '✅ Tersimpan';
+          badge.style.color = '#4CAF50';
+          setTimeout(() => {
+            badge.textContent = '📷 Ganti foto';
+            badge.style.color = '';
+          }, 2000);
+        };
+        reader.readAsDataURL(input.files[0]);
+      }
+    }
+
+    // Handle Student Photo Upload (manual override)
+    function handleStudentPhoto(input, id) {
+      if (input.files && input.files[0]) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+          const img = document.getElementById(`img${id}`);
+          const badge = document.getElementById(`autoBadge${id}`);
+          img.src = e.target.result;
+          localStorage.setItem(`angkatan25_foto_${id}`, e.target.result);
+          badge.textContent = '✅ Manual upload';
+          badge.style.color = '#4CAF50';
+          const card = document.getElementById(`card${id}`);
+          card.style.borderColor = '#4CAF50';
+        };
+        reader.readAsDataURL(input.files[0]);
+      }
+    }
+
+    // Load previously saved photos from localStorage
+    function loadSavedPhotos() {
+      // Apologizers
+      ['Dayat', 'Bilie'].forEach(person => {
+        const saved = localStorage.getItem(`apologizer_${person}`);
+        if (saved) {
+          document.getElementById(`img${person}`).src = saved;
+          const badge = document.getElementById(`badge${person}`);
+          badge.textContent = '✅ Tersimpan';
+          badge.style.color = '#4CAF50';
+        }
+      });
+      // Students
+      students.forEach(student => {
+        const saved = localStorage.getItem(`angkatan25_foto_${student.id}`);
+        if (saved) {
+          const img = document.getElementById(`img${student.id}`);
+          const badge = document.getElementById(`autoBadge${student.id}`);
+          img.src = saved;
+          badge.textContent = '✅ Dari penyimpanan';
+          badge.classList.add('show');
+          badge.style.color = '#4CAF50';
+        }
+      });
+    }
+
+    // Sakura Animation
+    function initSakura() {
+      const box = document.getElementById('sakura');
+      const items = ['🌸', '💮', '✨', '🔴', '🟡'];
+      for(let i=0; i<30; i++){
+        const pet = document.createElement('div');
+        pet.classList.add('petal');
+        pet.textContent = items[Math.floor(Math.random()*items.length)];
+        pet.style.left = Math.random()*100 + 'vw';
+        pet.style.fontSize = (Math.random()*12 + 14) + 'px';
+        pet.style.animationDuration = (Math.random()*4 + 4) + 's';
+        pet.style.animationDelay = Math.random()*3 + 's';
+        box.appendChild(pet);
+      }
+    }
+
+    // Audio Control
+    const audio = document.getElementById('bgAudio');
+    const audioBtn = document.getElementById('audioBtn');
+    let isPlaying = false;
+
+    function toggleAudio() {
+      if (isPlaying) {
+        audio.pause();
+        audioBtn.classList.remove('playing');
+        audioBtn.innerHTML = '🎵 Putar Mars Teknokrat';
+        isPlaying = false;
+      } else {
+        audio.play().then(() => {
+          audioBtn.classList.add('playing');
+          audioBtn.innerHTML = '⏸ Hentikan Musik';
+          isPlaying = true;
+        }).catch(err => {
+          alert('Pastikan file mars_teknokrat.mp3 ada di folder yang sama');
+        });
+      }
+    }
+
+    // Initialize
+    window.onload = function() {
+      generateGrid();
+      loadSavedPhotos();
+      autoLoadPhotos(); // Auto-load from files
+      initSakura();
+    };
+  </script>
+</body>
+</html>
