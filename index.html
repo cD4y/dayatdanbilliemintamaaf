@@ -200,24 +200,65 @@
   </div>
 
   <!-- WHO IS APOLOGIZING -->
-  <div class="apologizers">
-    <div class="apologizer-card" onclick="document.getElementById('inputDayat').click()">
-      <img id="imgDayat" class="apologizer-photo" src="" alt="Hidayatullah">
-      <div class="apologizer-name">Hidayatullah</div>
-      <div class="apologizer-role">👑 Mahasiswa Angkatan 25</div>
-      <div class="upload-badge" id="badgeDayat">🔄 Loading...</div>
-      <input type="file" id="inputDayat" accept="image/*" hidden onchange="handleApologizerPhoto(this, 'Dayat')">
-    </div>
-
-    <div class="apologizer-card" onclick="document.getElementById('inputBilie').click()">
-      <img id="imgBilie" class="apologizer-photo" src="" alt="Muhammad Bilie Farel Fabian">
-      <div class="apologizer-name">Muhammad Bilie Farel Fabian</div>
-      <div class="apologizer-role">⚡ Mahasiswa Angkatan 25</div>
-      <div class="upload-badge" id="badgeBilie">🔄 Loading...</div>
-      <input type="file" id="inputBilie" accept="image/*" hidden onchange="handleApologizerPhoto(this, 'Bilie')">
-    </div>
+<div class="apologizers">
+  <!-- Hidayatullah Card - Auto Load Only -->
+  <div class="apologizer-card">
+    <img id="imgDayat" class="apologizer-photo" src="" alt="Hidayatullah">
+    <div class="apologizer-name">Hidayatullah</div>
+    <div class="apologizer-role">👑 Mahasiswa Angkatan 25</div>
+    <div class="upload-badge" id="badgeDayat">🔄 Mencari foto...</div>
   </div>
 
+  <!-- Muhammad Bilie Farel Fabian Card - Auto Load Only -->
+  <div class="apologizer-card">
+    <img id="imgBilie" class="apologizer-photo" src="" alt="Muhammad Bilie Farel Fabian">
+    <div class="apologizer-name">Muhammad Bilie Farel Fabian</div>
+    <div class="apologizer-role">⚡ Mahasiswa Angkatan 25</div>
+    <div class="upload-badge" id="badgeBilie">🔄 Mencari foto...</div>
+  </div>
+</div>
+
+<!-- 📜 JAVASCRIPT: Automatic Image Loader -->
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const targets = [
+      { imgId: 'imgDayat', badgeId: 'badgeDayat', base: 'foto_hidayat' },
+      { imgId: 'imgBilie', badgeId: 'badgeBilie', base: 'foto_bilie' }
+    ];
+
+    targets.forEach(target => {
+      const img = document.getElementById(target.imgId);
+      const badge = document.getElementById(target.badgeId);
+      const formats = ['jpg', 'png', 'jpeg'];
+      let idx = 0;
+
+      function tryLoad() {
+        if (idx >= formats.length) {
+          badge.textContent = '⚠️ Foto tidak ditemukan';
+          badge.style.color = '#e74c3c';
+          img.src = `data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%23f5f5f5'/><text x='50' y='55' font-size='12' fill='%23999' text-anchor='middle'>No Image</text></svg>`;
+          return;
+        }
+
+        const fileName = `${target.base}.${formats[idx]}`;
+        const testImg = new Image();
+        testImg.onload = () => {
+          img.src = fileName;
+          badge.textContent = `✅ ${fileName}`;
+          badge.style.color = '#4CAF50';
+        };
+        testImg.onerror = () => {
+          idx++;
+          tryLoad();
+        };
+        testImg.src = fileName;
+      }
+
+      tryLoad();
+    });
+  });
+</script>
+  
   <div class="arrow-down">⬇️</div>
 
   <!-- TO WHOM -->
